@@ -1,27 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
 
-import { ref, onMounted } from 'vue'
-import logoDark from '@/assets/emboots_dark.png'
-import logoLight from '@/assets/emboots_light.png'
+import { ref, onMounted } from "vue";
+import logoDark from "@/assets/emboots_dark.png";
+import logoLight from "@/assets/emboots_light.png";
 
-const isDark = ref(false)
+const isDark = ref(false);
 
 onMounted(() => {
-  const media = window.matchMedia('(prefers-color-scheme: dark)')
-  isDark.value = media.matches
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  isDark.value = media.matches;
 
-  media.addEventListener('change', (e) => {
-    isDark.value = e.matches
-  })
-})
-
+  media.addEventListener("change", (e) => {
+    isDark.value = e.matches;
+  });
+});
 </script>
 
 <template>
   <header>
-    <img alt="Emboots logo" class="logo" :src="isDark? logoDark: logoLight" width="200" />
+    <img
+      alt="Emboots logo"
+      class="logo"
+      :src="isDark ? logoDark : logoLight"
+      width="200"
+    />
     <div class="wrapper">
       <HelloWorld msg="Hi, Ayio Gabung!" />
       <nav>
