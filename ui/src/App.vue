@@ -22,10 +22,8 @@ onMounted(() => {
 <template>
   <header>
     <img alt="Emboots logo" class="logo" :src="isDark? logoDark: logoLight" width="200" />
-
     <div class="wrapper">
       <HelloWorld msg="Hi, Ayio Gabung!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
