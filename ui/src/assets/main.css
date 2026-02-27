@@ -10,14 +10,24 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--vt-c-text-light-1);
   transition: 0.4s;
   padding: 3px;
 }
 
+@media (prefers-color-scheme: dark) {
+  a,
+  .green {
+    text-decoration: none;
+    color: var(--vt-c-blue-light);
+    transition: 0.4s;
+    padding: 3px;
+  }
+}
+
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: #25343F;
   }
 }
 
