@@ -2,9 +2,7 @@
   <div>
     <div class="navbar">
       <div class="navbar-start">
-        <button class="btn btn-ghost btn-circle">
-          <img :src="EmbootsLogo" alt="Emboots Logo" class="p-2" />
-        </button>
+        <img :src="EmbootsLogo" alt="Emboots Logo" class="p-1" />
       </div>
       <div class="navbar-center"></div>
       <div class="navbar-end">
@@ -17,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import EmbootsLogo from "@/assets/emboots_logo.png";
+import EmbootsLogo from "@/assets/emboots_light.png";
 import { Icon } from "@iconify/vue";
 </script>
 

@@ -1,11 +1,11 @@
 <template>
   <div class="flex w-full">
-    <div class="flex flex-col h-screen w-1/4 bg-base-300">
+    <div class="flex flex-col h-screen w-1/6 bg-base-300">
       <Sidebar />
       <Sidemenu class="flex-1 overflow-y-auto" />
       <Sideprofile />
     </div>
-    <div class="w-3/4 bg-base-200">
+    <div class="w-5/6 bg-base-200">
       <Navbar />
       <RouterView />
     </div>

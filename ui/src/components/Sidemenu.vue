@@ -2,22 +2,16 @@
   <div>
     <ul class="menu w-full">
       <li>
-        <a class="rounded-full hover:rounded-full">
-          <Icon icon="sidekickicons:sidebar-left" style="font-size: 24px" />
-          Item 2
-        </a>
+        <RouterLink to="/" class="rounded-full hover:rounded-full">
+          <Icon icon="material-symbols:home-rounded" style="font-size: 24px" />
+          Home
+        </RouterLink>
       </li>
       <li>
-        <a class="rounded-full hover:rounded-full">
-          <Icon icon="sidekickicons:sidebar-left" style="font-size: 24px" />
-          Item 1
-        </a>
-      </li>
-      <li>
-        <a class="rounded-full hover:rounded-full">
-          <Icon icon="sidekickicons:sidebar-left" style="font-size: 24px" />
-          Item 3
-        </a>
+        <RouterLink to="/about" class="rounded-full hover:rounded-full">
+          <Icon icon="ix:about-filled" style="font-size: 24px" />
+          About
+        </RouterLink>
       </li>
     </ul>
   </div>
@@ -25,6 +19,7 @@
 
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
+import { RouterLink } from "vue-router";
 </script>
 
 <style scoped></style>

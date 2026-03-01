@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex w-full p-4 gap-1 items-center">
+    <div class="flex w-full p-4 gap-4 items-center">
       <div>
         <img class="size-8 rounded-full" src="https://picsum.photos/200/300" />
       </div>
