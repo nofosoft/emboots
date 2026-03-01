@@ -2,10 +2,10 @@
   <div>
     <div class="navbar">
       <div class="navbar-start">
-        <button class="btn btn-ghost btn-circle">
+        <button class="hidden btn btn-ghost btn-circle">
           <Icon icon="ri:menu-unfold-line" style="font-size: 24px" />
         </button>
-        <a class="btn btn-ghost rounded-full text-xl">EMBoots</a>
+        <span class="normal-case text-xl">{{ titlePage }}</span>
       </div>
       <div class="navbar-center"></div>
       <div class="navbar-end">
@@ -50,8 +50,15 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
 import { Icon } from "@iconify/vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+
+const titlePage = computed(() => {
+  const last = route.matched[route.matched.length - 1];
+  return (last?.meta?.title as string) ?? "";
+});
 </script>
 
 <style scoped></style>
