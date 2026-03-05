@@ -1,14 +1,14 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex w-screen h-screen">
     <div
-      class="flex flex-col h-screen bg-base-300"
-      :class="[ui.isMaximized ? 'w-1/6' : null]"
+      class="flex flex-col h-screen bg-base-200"
+      :class="[ui.isMaximized ? 'w-75 shrink-0' : null]"
     >
       <Sidebar />
       <Sidemenu class="flex-1 overflow-y-auto" />
       <Sideprofile />
     </div>
-    <div class="bg-base-200" :class="[ui.isMaximized ? 'w-5/6' : 'w-full']">
+    <div class="flex flex-col bg-base-200 w-full overflow-x-auto">
       <Navbar />
       <Breadcrumbs />
       <RouterView />

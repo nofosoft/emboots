@@ -8,6 +8,15 @@
         </RouterLink>
       </li>
       <li>
+        <RouterLink to="/blog" class="rounded-full hover:rounded-full">
+          <Icon
+            icon="material-symbols:article-rounded"
+            style="font-size: 24px"
+          />
+          <span v-if="ui.isMaximized">Blog</span>
+        </RouterLink>
+      </li>
+      <li>
         <RouterLink to="/about" class="rounded-full hover:rounded-full">
           <Icon icon="ix:about-filled" style="font-size: 24px" />
           <span v-if="ui.isMaximized">About</span>
