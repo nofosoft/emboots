@@ -12,7 +12,7 @@
         <img class="size-8 rounded-full" src="https://picsum.photos/200/300" />
       </div>
       <div v-if="ui.isMaximized">
-        <div class="text-xs font-bold">Abu Abdirrahman Sabil</div>
+        <div class="text-xs font-bold">User</div>
         <div class="text-xs font-semibold opacity-60">Guest</div>
       </div>
     </div>
