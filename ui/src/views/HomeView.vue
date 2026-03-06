@@ -1,7 +1,7 @@
 <template>
   <main class="flex flex-col p-2">
     <div
-      class="flex gap-2"
+      class="flex gap-2 p-2"
       :class="[ui.isMaximized ? 'overflow-x-auto' : null]"
     >
       <KelasEmboots

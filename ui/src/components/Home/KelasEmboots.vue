@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div
+    <!-- <div
       class="card w-86 shadow-md text-gray-600 rounded-2xl"
       :style="backgroundStyle"
-    >
+    > -->
+    <div class="card w-86 shadow-md text-gray-600 rounded-2xl">
       <div class="card-body backdrop-blur-md bg-base-200/70 rounded-2xl">
         <span v-if="badge" class="badge badge-xs badge-warning font-bold">
           {{ badge }}
