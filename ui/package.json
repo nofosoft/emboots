@@ -11,15 +11,21 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
+    "@vueuse/head": "^2.0.0",
     "daisyui": "^5.5.19",
+    "front-matter": "^4.0.2",
+    "markdown-it": "^14.1.1",
     "pinia": "^3.0.4",
+    "vite-ssg": "^28.3.0",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
   },
   "devDependencies": {
     "@iconify/vue": "^5.0.0",
     "@tsconfig/node24": "^24.0.4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.10.13",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",
