@@ -85,22 +85,23 @@ const getPreview = (content: string, wordCount = 100) => {
 // load semua markdown secara dinamis
 const loadPosts = async () => {
   try {
-    const modules = import.meta.glob("/src/contents/posts/*.md", {
-      query: "?raw",
-      import: "default",
-    });
+    const res = await fetch("/posts/index.json");
+    const slugs: string[] = await res.json();
 
-    const promises = Object.entries(modules).map(async ([path, resolver]) => {
-      const raw: string = await (resolver as () => Promise<string>)();
+    const promises = slugs.map(async (slug) => {
+      const res = await fetch(`/posts/${slug}.md`);
+      const raw = await res.text();
+
       const { attributes, body } = fm(raw);
 
       const attrs = attributes as Record<string, any>;
+
+      // fallback slug
       if (!attrs.slug) {
-        const fileName = path.split("/").pop()!.replace(".md", "");
-        attrs.slug = fileName;
+        attrs.slug = slug;
       }
 
-      // tambahkan preview 100 kata
+      // preview artikel
       attrs.preview = getPreview(body, 50);
 
       return attrs;

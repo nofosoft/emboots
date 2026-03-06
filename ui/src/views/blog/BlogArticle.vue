@@ -47,18 +47,20 @@ const formattedDate = computed(() => {
 
 // Load markdown post
 const loadPost = async () => {
-  const modules = import.meta.glob("/src/contents/posts/*.md", {
-    query: "?raw",
-    import: "default",
-  });
+  // ambil file dari folder public/posts
+  const res = await fetch(`/posts/${route.params.slug}.md`);
 
-  const path = `/src/contents/posts/${route.params.slug}.md`;
-
-  if (modules[path]) {
-    const raw: any = await modules[path]();
+  if (!res.ok) {
+    throw console.error("Failed to load post:", res.statusText);
+  } else {
+    const raw = await res.text();
     const { attributes, body } = fm(raw);
-    meta.value = attributes;
-    html.value = renderMarkdown(body);
+    if (Object.keys(attributes as Record<string, unknown>).length === 0) {
+      console.log("No articles!");
+    } else {
+      meta.value = attributes;
+      html.value = renderMarkdown(body);
+    }
   }
 };
 
