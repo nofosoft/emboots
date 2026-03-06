@@ -53,6 +53,20 @@
         ]"
       />
     </div>
+    <div class="flex flex-col w-full pt-2">
+      <div
+        class="flex w-full px-4 py-4 bodered border-b border-gray-300 text-gray-600"
+      >
+        <h3 class="flex gap-1 items-center font-bold text-2xl">
+          <Icon
+            icon="material-symbols:article-rounded"
+            style="font-size: 24px"
+          />
+          Artikel
+        </h3>
+      </div>
+      <BlogView />
+    </div>
   </main>
 </template>
 
@@ -63,6 +77,8 @@ import ImgBitExplorer from "@/assets/kelas/img1.png";
 import ImgBitApprentice from "@/assets/kelas/img1.png";
 import ImgBitRanger from "@/assets/kelas/img1.png";
 import { useUIStore } from "@/stores/ui";
+import BlogView from "./BlogView.vue";
+import { Icon } from "@iconify/vue";
 const ui = useUIStore();
 </script>
 

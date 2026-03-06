@@ -4,7 +4,7 @@
       Loading posts...
     </div>
 
-    <div v-else class="space-y-6 grid grid-cols-2 gap-1">
+    <div v-else class="space-y-6 grid grid-cols-1 md:grid-cols-2 gap-1">
       <div
         v-for="post in posts"
         :key="post.slug"

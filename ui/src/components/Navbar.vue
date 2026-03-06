@@ -2,7 +2,10 @@
   <div>
     <div class="navbar">
       <div class="navbar-start">
-        <button class="hidden btn btn-ghost btn-circle">
+        <button
+          @click="ui.setPopupMaximized"
+          class="btn btn-ghost btn-circle mr-2 sm:hidden"
+        >
           <Icon icon="ri:menu-unfold-line" style="font-size: 24px" />
         </button>
         <span class="normal-case text-xl">{{ titlePage }}</span>
@@ -53,6 +56,9 @@
 import { Icon } from "@iconify/vue";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { useUIStore } from "@/stores/ui";
+
+const ui = useUIStore();
 const route = useRoute();
 
 const titlePage = computed(() => {

@@ -1,13 +1,13 @@
 <template>
   <div>
     <ul class="menu w-full">
-      <li>
+      <li @click="ui.setPopupMinimized">
         <RouterLink to="/" class="rounded-full hover:rounded-full">
           <Icon icon="material-symbols:home-rounded" style="font-size: 24px" />
           <span v-if="ui.isMaximized">Home</span>
         </RouterLink>
       </li>
-      <li>
+      <li @click="ui.setPopupMinimized">
         <RouterLink to="/blog" class="rounded-full hover:rounded-full">
           <Icon
             icon="material-symbols:article-rounded"
@@ -16,7 +16,7 @@
           <span v-if="ui.isMaximized">Blog</span>
         </RouterLink>
       </li>
-      <li>
+      <li @click="ui.setPopupMinimized">
         <RouterLink to="/about" class="rounded-full hover:rounded-full">
           <Icon icon="ix:about-filled" style="font-size: 24px" />
           <span v-if="ui.isMaximized">About</span>
