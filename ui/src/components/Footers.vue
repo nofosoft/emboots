@@ -3,27 +3,26 @@
     class="footer sm:footer-horizontal bodered border-t border-gray-300 bg-base-200 text-base-content p-10"
   >
     <nav>
-      <h6 class="footer-title">Services</h6>
-      <a class="link link-hover">Branding</a>
-      <a class="link link-hover">Design</a>
-      <a class="link link-hover">Marketing</a>
-      <a class="link link-hover">Advertisement</a>
-    </nav>
-    <nav>
-      <h6 class="footer-title">Company</h6>
+      <h6 class="footer-title">INFO</h6>
       <a class="link link-hover">About us</a>
-      <a class="link link-hover">Contact</a>
       <a class="link link-hover">Jobs</a>
-      <a class="link link-hover">Press kit</a>
     </nav>
     <nav>
-      <h6 class="footer-title">Legal</h6>
+      <h6 class="footer-title">LEGAL</h6>
       <a class="link link-hover">Terms of use</a>
       <a class="link link-hover">Privacy policy</a>
       <a class="link link-hover">Cookie policy</a>
     </nav>
+    <nav>
+      <h6 class="footer-title">SERVICES</h6>
+      <a class="link link-hover">Forum</a>
+      <a class="link link-hover">Kelas Private</a>
+      <a class="link link-hover">Hardware Design</a>
+      <a class="link link-hover">Firmware Design</a>
+      <a class="link link-hover">Blog</a>
+    </nav>
     <form>
-      <h6 class="footer-title">Newsletter</h6>
+      <h6 class="footer-title">Contact & Newsletter</h6>
       <fieldset class="w-80">
         <label>Enter your email address</label>
         <div class="join">

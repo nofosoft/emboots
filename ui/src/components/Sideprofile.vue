@@ -9,7 +9,11 @@
       ]"
     >
       <div>
-        <img class="size-8 rounded-full" src="https://picsum.photos/200/300" />
+        <img
+          class="size-8 rounded-full"
+          src="https://picsum.photos/200/300"
+          alt="Emboots User Profile Foto"
+        />
       </div>
       <div v-if="ui.isMaximized">
         <div class="text-xs font-bold">User</div>

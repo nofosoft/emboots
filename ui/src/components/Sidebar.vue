@@ -2,7 +2,7 @@
   <div>
     <div class="navbar justify-center">
       <div v-if="ui.isMaximized" class="navbar-start">
-        <img :src="Emboots" alt="Emboots Logo" class="p-1" />
+        <img :src="Emboots" alt="Kelas Private Emboots" class="p-1" />
       </div>
       <div :class="[ui.isMaximized ? 'navbar-end' : 'navbar-center']">
         <div v-if="!ui.isPopupMaximized">
@@ -13,7 +13,7 @@
           >
             <img
               :src="EmbootsLogo"
-              alt="Emboots Logo"
+              alt="Kelas Private Emboots Menu"
               class="transition-all duration-300 group-hover:opacity-0 group-hover:scale-75 p-1"
             />
             <Icon
