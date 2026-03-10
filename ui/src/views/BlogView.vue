@@ -1,12 +1,15 @@
 <template>
   <main class="p-4">
-    <div v-if="posts.length === 0" class="text-gray-500 text-center py-12">
+    <div
+      v-if="paginatedPosts.length === 0"
+      class="text-gray-500 text-center py-12"
+    >
       Loading posts...
     </div>
 
     <div v-else class="space-y-6 grid grid-cols-1 md:grid-cols-2 gap-1">
       <div
-        v-for="post in posts"
+        v-for="post in paginatedPosts"
         :key="post.slug"
         class="flex flex-col p-4 m-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
       >
@@ -35,12 +38,56 @@
         </p>
       </div>
     </div>
+
+    <div class="flex w-full justify-end mt-8 gap-2">
+      <button
+        class="btn btn-circle"
+        :disabled="currentPage === 1"
+        @click="currentPage--"
+      >
+        <Icon icon="icon-park-outline:left" class="text-2xl" />
+        <!-- Prev -->
+      </button>
+
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        @click="currentPage = page"
+        class="btn btn-circle"
+        :class="page === currentPage ? 'bg-primary text-white' : ''"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        class="btn btn-circle"
+        :disabled="currentPage === totalPages"
+        @click="currentPage++"
+      >
+        <Icon icon="icon-park-outline:right" class="text-2xl" />
+        <!-- Next -->
+      </button>
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import fm from "front-matter";
+import { Icon } from "@iconify/vue";
+
+const currentPage = ref(1);
+const postsPerPage = 4;
+
+const paginatedPosts = computed(() => {
+  const start = (currentPage.value - 1) * postsPerPage;
+  const end = start + postsPerPage;
+  return posts.value.slice(start, end);
+});
+
+const totalPages = computed(() => {
+  return Math.ceil(posts.value.length / postsPerPage);
+});
 
 // reactive array untuk posts
 const posts = ref<any[]>([]);
