@@ -2,7 +2,7 @@
 title: "Tren Embedded System dan IoT di 2026: Konektivitas, Efisiensi, dan Inovasi Perangkat"
 category: "Artikel"
 slug: "tren-embedded-system-iot-2026"
-date: "22026-03-06T09:10:00+07:00"
+date: "2026-03-06T09:10:00+07:00"
 author: "Abdirrahman"
 description: "Membahas tren embedded system dan IoT di tahun 2026, termasuk konektivitas nirkabel, efisiensi energi, sensor cerdas, dan inovasi perangkat edge."
 readingTime: "5 min read"
