@@ -14,7 +14,7 @@ scheduler = BackgroundScheduler()
 
 def start_scheduler():
 
-    # scheduler harian jam 07:00
+    # scheduler harian berdasarkan jam
     scheduler.add_job(
         generate_article,
         "cron",
@@ -24,7 +24,7 @@ def start_scheduler():
         replace_existing=True,
     )
 
-    # # jalankan setiap 20 detik
+    # jalankan setiap 20 detik
     # scheduler.add_job(
     #     generate_article,
     #     "interval",

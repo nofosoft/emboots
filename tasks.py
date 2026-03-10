@@ -11,90 +11,93 @@ from dotenv import load_dotenv
 
 load_dotenv()   # membaca file .env
 
-AI_TOKEN = os.getenv("AI_TOKEN")
-AI_TEMA = os.getenv("AI_TEMA")
-
 POST_DIR = "ui/public/posts"
 os.makedirs(POST_DIR, exist_ok=True)
 
+AI_TEMA = os.getenv("AI_TEMA")
+AI_TOKEN_GEMINI = os.getenv("AI_TOKEN_GEMINI")
+API_URL_GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
+HEADERS_GEMINI = {
+    "Content-Type": f"application/json",
+    "X-goog-api-key": f"{AI_TOKEN_GEMINI}"
+}
 
-API_URL = "https://router.huggingface.co/v1/chat/completions"
-HEADERS = {"Authorization": f"Bearer {AI_TOKEN}"}
+
+def clean_ai_json(text):
+    text = re.sub(r"```json|```", "", text)
+    text = text.strip()
+    return json.loads(text)
 
 
-def get_ai_response(payload):
+def get_ai_gemini_response(payload):
     try:
-        response = requests.post(API_URL, headers=HEADERS,
+        response = requests.post(API_URL_GEMINI, headers=HEADERS_GEMINI,
                                  json=payload, timeout=30)
 
         data = response.json()
 
-        if "choices" not in data:
+        if "candidates" not in data:
             print("API ERROR:", data)
             return None
 
-        return data["choices"][0]["message"]["content"]
+        return data["candidates"][0]["content"]["parts"][0]["text"]
 
     except Exception as e:
         print("PARSE ERROR:", e)
         return None
 
 
-def generate_ai_topic(related_topic):
+def ai_generate_article(related_topic):
+
+    prompt = f"""
+Anda adalah penulis artikel teknologi profesional.
+
+Tugas Anda:
+Tulis sebuah artikel blog berdasarkan topik {related_topic}.
+
+Kriteria artikel:
+- panjang maksimal 500 kata
+- gunakan bahasa Indonesia
+- gaya tulisan profesional dan informatif
+- relevan dengan tren teknologi saat ini
+- SEO friendly
+
+Struktur artikel:
+- gunakan heading markdown (#, ##, ###)
+- gunakan paragraf yang jelas
+- boleh menggunakan bullet list jika diperlukan
+
+Output HARUS dalam format JSON valid dengan struktur berikut:
+"title": "judul artikel","description": "ringkasan artikel 2-3 kalimat","content": "isi artikel dalam format markdown"
+
+Aturan penting:
+- Jangan menambahkan teks apa pun di luar JSON
+- JSON harus valid
+- content harus menggunakan format Markdown
+"""
 
     payload = {
-        "model": "Qwen/Qwen2.5-7B-Instruct",
-        "messages": [
+        "contents": [
             {
-                "role": "user",
-                "content": f"Berikan saya topik artikel yang unik berupa kalimat tentang {related_topic} yang relevan untuk tren teknologi hari ini. Topik harus berbeda dari topik sebelumnya minimal 6 kata. Respon dengan hanya satu kalimat."
+                "parts": [
+                    {"text": prompt}
+                ]
             }
         ]
     }
 
-    topic = get_ai_response(payload)
-    print(topic)
+    res = get_ai_gemini_response(payload)
 
-    return topic
+    print(res)
 
+    data = clean_ai_json(res)
 
-def generate_ai_topic_description(topic):
+    file_path = "artikel.json"
 
-    payload = {
-        "model": "Qwen/Qwen2.5-7B-Instruct",
-        "messages": [
-            {
-                "role": "user",
-                "content": f"Buatkan deskripsi tentang {topic} dengan panjang 50 kata"
-            }
-        ]
-    }
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
-    description = get_ai_response(payload)
-    print(description)
-
-    return description
-
-
-def generate_ai_article(topic):
-
-    payload = {
-        "model": "Qwen/Qwen2.5-7B-Instruct",
-        "messages": [
-            {
-                "role": "user",
-                "content": f"Tulislah 500 kata artikel blog dengan topik {topic} dengan format markdown. \
-                    fokus pada konten saja dan jangan tambahkan markdown yang tidak perlu. \
-                        Gunakan bahasa teknis yang mudah. Hilangkan sub judul pendahuluan, pengantar atau sejenisnya akan tetapi langsung ke deskripsinya. \
-                            Gunakan penomoran ## untuk sub judul dan # untuk judul utama.\
-                                Sub judul terakhir adalah kesimpulan."
-            }
-        ]
-    }
-
-    msg = get_ai_response(payload)
-
-    return msg
+    print("File berhasil disimpan:", file_path)
 
 
 def slugify(text):
@@ -158,9 +161,18 @@ def generate_article():
 
     reletated_topic = AI_TEMA
 
-    ai_get_topic = generate_ai_topic(reletated_topic)
-    ai_get_description = generate_ai_topic_description(ai_get_topic)
-    ai_content = generate_ai_article(ai_get_topic)
+    # generate json file
+    ai_generate_article(reletated_topic)
+
+    # load json file
+    with open("artikel.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    # ambil data dari json
+    ai_get_topic = data["title"]
+    ai_get_description = data["description"]
+    ai_content = data["content"]
+
     keywords = generate_keywords(ai_content)
     keywords_str = ", ".join(keywords)
     estimated_time_reading = estimate_reading_time(ai_content)
