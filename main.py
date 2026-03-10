@@ -3,9 +3,6 @@ import os
 from fastapi import FastAPI
 from scheduler import start_scheduler
 from contextlib import asynccontextmanager
-from dotenv import load_dotenv
-
-load_dotenv()   # membaca file .env
 
 
 @asynccontextmanager

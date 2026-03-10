@@ -7,6 +7,10 @@ from typing import Counter
 from zoneinfo import ZoneInfo
 import requests
 
+from dotenv import load_dotenv
+
+load_dotenv()   # membaca file .env
+
 HF_TOKEN = os.getenv("HF_TOKEN")
 
 POST_DIR = "ui/public/posts"
@@ -15,6 +19,24 @@ os.makedirs(POST_DIR, exist_ok=True)
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
 HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
+
+
+def get_ai_response(payload):
+    try:
+        response = requests.post(API_URL, headers=HEADERS,
+                                 json=payload, timeout=30)
+
+        data = response.json()
+
+        if "choices" not in data:
+            print("API ERROR:", data)
+            return None
+
+        return data["choices"][0]["message"]["content"]
+
+    except Exception as e:
+        print("PARSE ERROR:", e)
+        return None
 
 
 def generate_ai_topic(related_topic):
@@ -29,11 +51,7 @@ def generate_ai_topic(related_topic):
         ]
     }
 
-    response = requests.post(API_URL, headers=HEADERS, json=payload)
-
-    data = response.json()
-    topic = data["choices"][0]["message"]["content"]
-
+    topic = get_ai_response(payload)
     print(topic)
 
     return topic
@@ -51,12 +69,8 @@ def generate_ai_topic_description(topic):
         ]
     }
 
-    response = requests.post(API_URL, headers=HEADERS, json=payload)
-
-    data = response.json()
-    description = data["choices"][0]["message"]["content"]
-
-    # print(msg)
+    description = get_ai_response(payload)
+    print(description)
 
     return description
 
@@ -77,12 +91,7 @@ def generate_ai_article(topic):
         ]
     }
 
-    response = requests.post(API_URL, headers=HEADERS, json=payload)
-
-    data = response.json()
-    msg = data["choices"][0]["message"]["content"]
-
-    # print(msg)
+    msg = get_ai_response(payload)
 
     return msg
 
@@ -156,10 +165,6 @@ def generate_article():
     estimated_time_reading = estimate_reading_time(ai_content)
 
     add_to_index(slugify(ai_get_topic))
-
-    # print(ai_get_topic)
-    # print(ai_get_description)
-    # print(estimated_time_reading)
 
     date = datetime.now(ZoneInfo("Asia/Jakarta")).isoformat()
     filename = f"{POST_DIR}/{slugify(ai_get_topic)}.md"

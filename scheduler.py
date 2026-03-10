@@ -10,13 +10,13 @@ def start_scheduler():
     scheduler.add_job(
         generate_article,
         "cron",
-        hour=7,
-        minute=0,
+        hour=10,
+        minute=54,
         id="daily_article",
         replace_existing=True,
     )
 
-    # jalankan setiap 20 detik
+    # # jalankan setiap 20 detik
     # scheduler.add_job(
     #     generate_article,
     #     "interval",
