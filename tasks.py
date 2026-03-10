@@ -11,14 +11,15 @@ from dotenv import load_dotenv
 
 load_dotenv()   # membaca file .env
 
-HF_TOKEN = os.getenv("HF_TOKEN")
+AI_TOKEN = os.getenv("AI_TOKEN")
+AI_TEMA = os.getenv("AI_TEMA")
 
 POST_DIR = "ui/public/posts"
 os.makedirs(POST_DIR, exist_ok=True)
 
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
-HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
+HEADERS = {"Authorization": f"Bearer {AI_TOKEN}"}
 
 
 def get_ai_response(payload):
@@ -155,7 +156,7 @@ def add_to_index(title, index_file="ui/public/posts/index.json"):
 
 def generate_article():
 
-    reletated_topic = "embedded system dan teknologi iot"
+    reletated_topic = AI_TEMA
 
     ai_get_topic = generate_ai_topic(reletated_topic)
     ai_get_description = generate_ai_topic_description(ai_get_topic)

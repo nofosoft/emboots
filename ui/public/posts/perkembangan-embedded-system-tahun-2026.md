@@ -5,7 +5,7 @@ slug: "perkembangan-embedded-system-tahun-2026"
 date: "2026-03-06T08:55:00+07:00"
 author: "Abdirrahman"
 description: "Membahas perkembangan embedded system tahun 2026, termasuk edge AI, RISC-V, heterogeneous computing, serta inovasi chip dan keamanan IoT."
-readingTime: "7 min read"
+readingTime: "6 min read"
 keywords: "embedded system 2026, teknologi embedded terbaru, edge ai embedded, risc-v embedded, perkembangan embedded system"
 ---
 

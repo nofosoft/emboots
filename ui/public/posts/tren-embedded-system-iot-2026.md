@@ -5,7 +5,7 @@ slug: "tren-embedded-system-iot-2026"
 date: "22026-03-06T09:10:00+07:00"
 author: "Abdirrahman"
 description: "Membahas tren embedded system dan IoT di tahun 2026, termasuk konektivitas nirkabel, efisiensi energi, sensor cerdas, dan inovasi perangkat edge."
-readingTime: "7 min read"
+readingTime: "5 min read"
 keywords: "embedded system 2026, IoT 2026, teknologi edge, sensor cerdas, low-power embedded"
 ---
 
